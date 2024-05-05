@@ -13,6 +13,9 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      primary: ['Founders-Grotesk', 'sans-serif']
+    },
     container: {
       center: true,
       padding: "2rem",

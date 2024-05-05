@@ -1,0 +1,55 @@
+import React, { useState } from 'react'
+import {Heading} from '../Heading'
+import { SubHeading } from '../SubHeading'
+import { Input } from '../Input'
+import { Button } from '../Button'
+import { Bottom } from '../Bottom'
+import { signinBody } from '@/zod/authSchemas'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { signInEndpoint } from '@/conf/config'
+
+function Signin({toggleForm}) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationResult = signinBody.safeParse({ email, password });
+    if (validationResult.success) {
+      try {
+        const response = await axios.post(signInEndpoint, {
+          email,
+          password
+        });
+        localStorage.setItem("token", response.data.token);
+        navigate("/home");
+      } catch (error) {
+        console.error("API call failed:", error);
+      }
+    } else {
+      toast.error("Validation failed. Please check your inputs.");
+    }
+  }
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    
+  return (
+    <div className='h-screen flex justify-center items-center'>
+      <div className='rounded-lg bg-black w-80 p-2 text-center px-4 h-max'>
+        <Heading heading={"Sign In"} />
+        <SubHeading subHeading={"Enter Details"} />
+        <Input label={"Email"} placeholder={"Enter Email"} onChange={e=>{
+        setEmail(e.target.value)}} 
+        />
+        <Input label={"Password | Min:6"} placeholder={"Enter Password"} onChange={ e=>{
+        setPassword(e.target.value)}}
+        />
+        <div>
+          <Button label={"Sign In"} onClick={handleSubmit}/>
+        </div>
+        <Bottom label={"Don't have an account?"} buttonText={"Sign Up"} onClick={toggleForm} />
+      </div>
+    </div>
+  )
+}
+
+export default Signin

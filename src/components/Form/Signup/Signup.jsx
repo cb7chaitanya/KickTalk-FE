@@ -23,7 +23,7 @@ function Signup({toggleForm}) {
           email,
           password
         });
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", "Bearer " + response.data.token);
         navigate("/home");
       } catch (error) {
         console.error("API call failed:", error);

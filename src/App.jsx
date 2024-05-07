@@ -17,7 +17,7 @@ function App() {
           <Route path='/home' element={<Home/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/createPost' element={<CreatePost/>}/>
-          <Route path='/community' element={<Community />} />
+          <Route path='/:communityId' element={<Community />} />
         </Routes>
       </BrowserRouter>
       </RecoilRoot>

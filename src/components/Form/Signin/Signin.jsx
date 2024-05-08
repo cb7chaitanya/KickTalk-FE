@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { signInEndpoint } from '@/conf/config'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
 function Signin({toggleForm}) {
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
@@ -21,8 +22,22 @@ function Signin({toggleForm}) {
           email,
           password
         });
-        localStorage.setItem("token", "Bearer " + response.data.token);
+        localStorage.setItem("Authorization", "Bearer " + response.data.token);
         navigate("/home");
+
+        axios.interceptors.request.use(
+          config => {
+              const token = localStorage.getItem('Authorization');
+              if (token) {
+                config.headers.Authorization = token;
+                useSetRecoilState()
+              }
+              return config;
+          },
+          error => {
+              return Promise.reject(error);
+          }
+      );
       } catch (error) {
         console.error("API call failed:", error);
       }

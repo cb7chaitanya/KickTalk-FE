@@ -4,24 +4,44 @@ import { Feed }  from '@/components/Home/Middle/Feed'
 import { Carousel } from '@/components/Home/Carousel/Carousel'
 import { Popular } from '@/components/Home/Right/Popular'
 import React from 'react'
+import { useEffect } from "react"
+import { getUserDetailsEndpoint, getAllPostsEndpoint } from '@/conf/config'
+import { useSetRecoilState } from 'recoil'
 import { detailsAtom } from '@/store/atoms/user'
-import { useRecoilState } from 'recoil'
+import { postAtom } from '@/store/atoms/post'
 import axios from 'axios'
-import { useEffect } from 'react'
-import { getUserDetailsEndpoint } from '@/conf/config'
 
 function Home() {
-  const [details, setDetails] = useRecoilState(detailsAtom)
-  
+  const setDetails = useSetRecoilState(detailsAtom)
+  const setPosts = useSetRecoilState(postAtom)
+  const authHeaders = localStorage.getItem("Authorization")
   useEffect(() => {
-    async function fetchData() {await axios.get(getUserDetailsEndpoint).then((res) => {
-      setDetails(res.data)
+      async function fetchData() {await axios.get(getUserDetailsEndpoint, {
+        headers: {
+          'Authorization': authHeaders
+        }
+      }).then((res) => {
+        setDetails(res.data.user)
+      })}
+      fetchData()
+      return () => {
+      
+      }
+  }, [])
+
+  useEffect(() => {
+    async function fetchData() {await axios.get(getAllPostsEndpoint, {
+      headers: {
+        'Authorization': authHeaders
+      }
+    }).then((res) => {
+      setPosts(res.data.posts)
     })}
     fetchData()
     return () => {
-      
+    
     }
-  }, [details])
+  }, [])
 
   return (
     <div className='w-full bg-black h-[100vh] overflow-x-hidden'>
@@ -31,9 +51,8 @@ function Home() {
           <Sidebar />
         </div>
         <div className='flex w-[80vw] flex-wrap'>
-          <Carousel/>
           <div className='flex '>
-            <Feed />
+            <Feed/>
             <Popular />
           </div>
         </div>

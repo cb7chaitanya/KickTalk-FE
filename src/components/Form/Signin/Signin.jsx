@@ -11,6 +11,7 @@ import { signInEndpoint } from '@/conf/config'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
+
 function Signin({toggleForm}) {
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
@@ -56,10 +57,12 @@ function Signin({toggleForm}) {
         <SubHeading subHeading={"Enter Details"} />
         <Input label={"Email"} placeholder={"Enter Email"} onChange={e=>{
         setEmail(e.target.value)}} 
-        />
-        <Input label={"Password | Min:6"} placeholder={"Enter Password"} onChange={ e=>{
-        setPassword(e.target.value)}}
-        />
+        className="w-full" TooltipContent="Please enter a valid email address." />
+
+            <Input label={"Password"} placeholder={"Enter Password"} onChange={ e=>{
+              setPassword(e.target.value)}}
+              className="w-full" TooltipContent="Password must be at least 8 characters long."/>
+            
         <div>
           <Button label={"Sign In"} onClick={handleSubmit}/>
         </div>

@@ -44,13 +44,13 @@ function Signup({toggleForm}) {
       <SubHeading subHeading={"Enter Details"}/>
       <Input label={"Email"} onChange={e=>{
         setEmail(e.target.value)
-      }} placeholder={"Enter Email"}/>
+      }} placeholder={"Enter Email"} className="w-full" TooltipContent={"Enter a valid Email"}/>
       <Input label={"Username | Min:5 | Max:25"} onChange={e=>{
         setUsername(e.target.value)
-      }} placeholder={"Enter Username"}/>
+      }} placeholder={"Enter Username"} className="w-full" TooltipContent={"Min.5, Max.25"}/>
       <Input label={"Password | Min:6"} onChange={ e=>{
         setPassword(e.target.value)
-      }} placeholder={"Enter Password"} />
+      }} placeholder={"Enter Password"} className="w-full"/>
       <div>
       <Button label={"Sign Up"} onClick={handleSubmit} />
       </div>

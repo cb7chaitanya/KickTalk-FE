@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { detailsAtom } from '@/store/atoms/user'
 import { useRecoilValue } from 'recoil'
 import Bio from '@/components/Profile/Bio'
+import Avatar from '@/components/Profile/Avatar'
 
 function Profile() {
   const details = useRecoilValue(detailsAtom)
@@ -14,8 +15,8 @@ function Profile() {
       <div className='flex flex-col'>
         <div className='w-[100vw] fixed left-[18%] top-[11%] h-[60vh] text-white border-b-white border'>
           {/*Profile Pane: Avatar, Follow, Following Count, bio, username*/}
-          <Bio bio={details.bio}/>
-          
+          <Bio bio={details.profile.bio}/>
+          <Avatar avatar={details.profile.avatar.url} exists={details.profile.avatar.exists} />
         </div>
       </div>
     </div>

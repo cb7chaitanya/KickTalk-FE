@@ -1,35 +1,16 @@
 import React, { useState } from 'react'
-import { LuPencil } from "react-icons/lu";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-
+import axios from "axios"
+import { Input } from '../Form/Input'
+import { Button } from '../Form/Button'
 
 function Bio({bio}) {
-  const [show, setShow] = useState(false)
-  
-  return (
-    <div className='inline-flex text-white w-full translate-y-32 ml-4'>
+  console.log(bio)
+  const [bios, setBios] = useState('')
+  return ( bio ?
+    (<div className='inline-flex text-white w-16 translate-y-32 ml-4 text-2xl'>
       {bio}
-      <Dialog>
-      <DialogTrigger className='bg-zinc-800 p-2 rounded border'><LuPencil />
-</DialogTrigger>
-      <DialogContent>
-      <DialogHeader>
-      <DialogTitle>Edit Bio</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </DialogDescription>
-      </DialogHeader>
-      </DialogContent>
-      </Dialog>
-    </div>
+    </div>) :
+    (<Input label="" placeholder="Enter bio..." onChange={(e) => {setBios(e.target.value)}} className="w-[30vw] outline-none ml-8 py-2"/> )
   )
 }
 

@@ -22,9 +22,9 @@ export const Sidebar = ({profile}) => {
                 <Button navigation="home" className="" label={<IoHomeOutline className='inline-flex mr-2'/>} title="Home" />
                 <Button navigation="about" className="" label={<MdOutlineDescription className='inline-flex mr-2'/>} title="About" />
                 <Button navigation="community" className="" label={<RiCommunityLine className='inline-flex mr-2'/>} title="Communities" />
-                {flag===false ? <StateButton title={"Profile"} isOpen={profileModal} setIsOpen={setProfileModal}/> : <Button navigation="profile" className="" label={<CiUser className='inline-flex mr-2'/>} title="Profile" />}
-                <StateButton title={"Post"} isOpen={postModal} setIsOpen={setPostModal}/>
-                <StateButton title={"Community"} isOpen={communityModal} setIsOpen={setCommunityModal}/>
+                {flag===false ? <StateButton title={"Create Profile"} isOpen={profileModal} setIsOpen={setProfileModal} label={<CiUser className='inline-flex mr-2' />}/> : <Button navigation="profile" className="" label={<CiUser className='inline-flex mr-2'/>} title="Profile" />}
+                <StateButton title={"Create Post"} label={<GoPlus className='inline-flex mr-2'/>} isOpen={postModal} setIsOpen={setPostModal}/>
+                <StateButton title={"Create Community"} label={<IoCreateOutline className='inline-flex mr-2'/>} isOpen={communityModal} setIsOpen={setCommunityModal}/>
                 <Button navigation="/" className="mt-6" label={<VscSignOut className='inline-flex mr-2'/>} title="SignOut" />
             </ul>
         </div>

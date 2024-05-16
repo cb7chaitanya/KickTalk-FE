@@ -15,7 +15,7 @@ export function Input({label, onChange, className, content}) {
             <TooltipTrigger>
       <input onChange={onChange} type="text" className={`${className} px-3 -translate-x-4 pr-12 py-1 rounded bg-zinc-800`} />
       </TooltipTrigger>
-              <TooltipContent side="right">
+              <TooltipContent side="left">
                 <p>{content}</p>
               </TooltipContent>
           </Tooltip>

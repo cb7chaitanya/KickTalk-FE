@@ -1,12 +1,12 @@
 import {atom} from 'recoil'
 
 const postModalAtom = atom({
-    key: 'postAtom',
+    key: 'postModalAtom',
     default: false
 })
 
 const communityModalAtom = atom({
-    key: 'communityAtom',
+    key: 'communityModalAtom',
     default: false
 })
 

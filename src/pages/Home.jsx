@@ -3,9 +3,6 @@ import { Sidebar } from '@/components/Home/Sidebar/Sidebar'
 import { Feed }  from '@/components/Home/Middle/Feed'
 import { Carousel } from '@/components/Home/Carousel/Carousel'
 import { Popular } from '@/components/Home/Right/Popular'
-import { communityModal } from '@/components/Form/Modals/communityModal'
-import { postModal } from '@/components/Form/Modals/postModal'
-import { profileModal } from '@/components/Form/Modals/profileModal'
 import React from 'react'
 import { useEffect } from "react"
 import { getUserDetailsEndpoint, getAllPostsEndpoint } from '@/conf/config'
@@ -13,6 +10,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { detailsAtom } from '@/store/atoms/user'
 import { postAtom } from '@/store/atoms/post'
 import axios from 'axios'
+import communityModal from '@/components/Form/Modals/communityModal'
+import PostModal from '@/components/Form/Modals/postModal'
+import profileModal from '@/components/Form/Modals/profileModal'
 
 function Home() {
   const [details, setDetails] = useRecoilState(detailsAtom)
@@ -57,7 +57,7 @@ function Home() {
           <div className='flex '>
             <Feed/>
             <Popular />
-            <postModal />
+            <PostModal />
             <profileModal />
             <communityModal />
           </div>

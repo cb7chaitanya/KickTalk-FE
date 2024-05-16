@@ -38,19 +38,19 @@ function Signup({toggleForm}) {
 
   const navigate = useNavigate();
   return (
-    <div className='-h-screen flex justify-center items-center'>
+    <div className='-h-screen flex justify-center items-start'>
       <div className='rounded-lg w-80 p-2 text-center px-4 h-max bg-black'>
       <Heading heading={"Sign Up"}/>
       <SubHeading subHeading={"Enter Details"}/>
       <Input label={"Email"} onChange={e=>{
         setEmail(e.target.value)
-      }} placeholder={"Enter Email"} className="w-full" TooltipContent={"Enter a valid Email"}/>
-      <Input label={"Username | Min:5 | Max:25"} onChange={e=>{
+      }} placeholder={"Enter Email"} className="w-full" content={"Enter a valid Email"}/>
+      <Input label={"Username"} onChange={e=>{
         setUsername(e.target.value)
-      }} placeholder={"Enter Username"} className="w-full" TooltipContent={"Min.5, Max.25"}/>
-      <Input label={"Password | Min:6"} onChange={ e=>{
+      }} placeholder={"Enter Username"} className="w-full" content={"Min.5, Max.25"}/>
+      <Input label={"Password"} onChange={ e=>{
         setPassword(e.target.value)
-      }} placeholder={"Enter Password"} className="w-full"/>
+      }} placeholder={"Enter Password"} className="w-full" content={"Min.6"}/>
       <div>
       <Button label={"Sign Up"} onClick={handleSubmit} />
       </div>

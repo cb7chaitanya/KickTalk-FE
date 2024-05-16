@@ -3,16 +3,19 @@ import { Sidebar } from '@/components/Home/Sidebar/Sidebar'
 import { Feed }  from '@/components/Home/Middle/Feed'
 import { Carousel } from '@/components/Home/Carousel/Carousel'
 import { Popular } from '@/components/Home/Right/Popular'
+import { communityModal } from '@/components/Form/Modals/communityModal'
+import { postModal } from '@/components/Form/Modals/postModal'
+import { profileModal } from '@/components/Form/Modals/profileModal'
 import React from 'react'
 import { useEffect } from "react"
 import { getUserDetailsEndpoint, getAllPostsEndpoint } from '@/conf/config'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { detailsAtom } from '@/store/atoms/user'
 import { postAtom } from '@/store/atoms/post'
 import axios from 'axios'
 
 function Home() {
-  const setDetails = useSetRecoilState(detailsAtom)
+  const [details, setDetails] = useRecoilState(detailsAtom)
   const setPosts = useSetRecoilState(postAtom)
   const authHeaders = localStorage.getItem("Authorization")
   useEffect(() => {
@@ -42,18 +45,21 @@ function Home() {
     
     }
   }, [])
-
+  const exists = details.profile.avatar.exists
   return (
     <div className='w-full bg-black h-[100vh] overflow-x-hidden'>
       <Appbar />
       <div className='flex bg-black'>
         <div className='w-[20vw]'>
-          <Sidebar />
+          <Sidebar profile={exists}/>
         </div>
         <div className='flex w-[80vw] flex-wrap'>
           <div className='flex '>
             <Feed/>
             <Popular />
+            <postModal />
+            <profileModal />
+            <communityModal />
           </div>
         </div>
       </div>

@@ -57,11 +57,11 @@ function Signin({toggleForm}) {
         <SubHeading subHeading={"Enter Details"} />
         <Input label={"Email"} placeholder={"Enter Email"} onChange={e=>{
         setEmail(e.target.value)}} 
-        className="w-full" TooltipContent="Please enter a valid email address." />
+        className="w-full" content="Please enter a valid email address." />
 
             <Input label={"Password"} placeholder={"Enter Password"} onChange={ e=>{
               setPassword(e.target.value)}}
-              className="w-full" TooltipContent="Password must be at least 8 characters long."/>
+              className="w-full" content="Password must be at least 6 characters long."/>
             
         <div>
           <Button label={"Sign In"} onClick={handleSubmit}/>

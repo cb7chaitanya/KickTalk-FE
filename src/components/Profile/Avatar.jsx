@@ -1,16 +1,11 @@
 import React from 'react'
 
-function Avatar({avatar, exists}) {
-  return ( exists===true ? (
+function Avatar({avatar}) {
+  return (
     <div>
       {avatar}
     </div>
-  ) : (
-    <div>
-      
-    </div>   
   )
-)
 }
 
 export default Avatar

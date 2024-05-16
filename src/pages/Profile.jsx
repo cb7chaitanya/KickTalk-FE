@@ -15,8 +15,8 @@ function Profile() {
       <div className='flex flex-col'>
         <div className='w-[100vw] fixed left-[18%] top-[11%] h-[60vh] text-white border-b-white border'>
           {/*Profile Pane: Avatar, Follow, Following Count, bio, username*/}
-          <Bio bio={details.profile.bio}/>
-          <Avatar avatar={details.profile.avatar.url} exists={details.profile.avatar.exists} />
+          <Bio bio={details.profile.bio} />
+          <Avatar avatar={details.profile.avatar.url} />
         </div>
       </div>
     </div>

@@ -4,9 +4,11 @@ import { postModalAtom } from '@/store/atoms/Modal'
 import { MdCancelPresentation } from "react-icons/md";
 import { Input } from './Input';
 import axios from 'axios'
-import { getSubscribedCommunities, createPost } from '@/conf/config';
+import { getSubscribedCommunities, createPostEndpoint } from '@/conf/config';
 import { postBody } from '@/zod/postSchema';
 import { Badge } from '@/components/ui/badge';
+import TextArea from './TextArea';
+
 
 export default function PostModal() {
   const [postModal, setPostModal] = useRecoilState(postModalAtom)
@@ -24,7 +26,6 @@ export default function PostModal() {
   const title = postData.title
   const content = postData.content
   const community = postData.community
-  const tag = postData.tags
 
   const handleAddTag = (e) => {
     if (e.key === "Enter"  && tagInput) {
@@ -59,7 +60,7 @@ export default function PostModal() {
           tags : postData.tags,
           community : postData.community
         }
-        const response = await axios.post(createPost, body, {
+        const response = await axios.post(createPostEndpoint, body, {
           headers : {
             'Authorization': authHeaders
           }
@@ -101,7 +102,7 @@ export default function PostModal() {
         Create a post
         <form>
         <select
-              className="bg-zinc-900 shadow-zinc-950 shadow-md text-white p-2 absolute right-80 mr-24"
+              className="bg-zinc-900 shadow-zinc-950 shadow-md text-white p-2 fixed right-80 mr-24"
               value={selectedCommunity}
               onChange={(e) => handleSelect(e)}
             >
@@ -112,9 +113,8 @@ export default function PostModal() {
                 return <option value={community}>{community}</option>;
               })}
           </select>
-          <Input label="Title" value={title} onChange={(e) => setPostData({...postData, title: e.target.value})} placeholder={"Title"} onKeyDown={emptyFunction}/>
-          <Input label="Content" value={content} onChange={(e) => setPostData({...postData, content: e.target.value})} placeholder={"Content"} onKeyDown={emptyFunction}/>
-          <Input label="Tags" value={tagInput} onChange={(e) => setTagInput(e.target.value)} placeholder={"Tags"} onKeyDown={handleAddTag}/>
+          <Input label="Title" type="text" value={title} onChange={(e) => setPostData({...postData, title: e.target.value})} placeholder={"Title"} onKeyDown={emptyFunction}/>
+          <Input label="Tags" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} placeholder={"Tags"} onKeyDown={handleAddTag}/>
           <div className='inline-flex ml-2 mt-4'>
             {tags?.map((tag, index) => (
             <Badge
@@ -127,8 +127,9 @@ export default function PostModal() {
             </Badge>
             ))}
           </div>
+          <TextArea label="Content" value={content} onChange={(e) => setPostData({...postData, content: e.target.value})} placeholder={"Content"} onKeyDown={emptyFunction} className={"fixed right-80 top-56 mr-4"}/>
         </form>
-        <button onClick={createPost} className='mt-8 ml-1 bg-zinc-950 py-1 px-4 rounded-xl text-white hover:bg-zinc-800 duration-300 border border-bg-white'>Post</button>
+        <button onClick={createPost} className='mt-20 ml-2 bg-zinc-950 py-1 px-4 rounded-xl text-white hover:bg-zinc-800 duration-300 border border-bg-white'>Post</button>
       </div>
     </div>
     ) : null

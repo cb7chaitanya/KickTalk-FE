@@ -2,8 +2,12 @@ import {useNavigate} from 'react-router-dom'
 
 export function Button ({navigation, label, title, className}) {
     const navigate = useNavigate()
+    const handleClick = (e) => {
+        e.preventDefault()  
+        navigate(`/${navigation}`)
+    }
     return (
-        <button className={`w-full px-4 py-4 hover:bg-zinc-900 duration-300 ${className}` } onClick={() => navigate(`/${navigation}`)}>
+        <button className={`w-full px-4 py-4 hover:bg-zinc-900 duration-300 ${className}` } onClick={(e) => handleClick(e)}>
             {label}{title}
         </button>
     )

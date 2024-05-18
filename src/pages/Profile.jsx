@@ -12,8 +12,8 @@ function Profile() {
     <div className='text-white w-full h-screen flex'>
       <Appbar />
       <Sidebar />
-      <div className='flex flex-col'>
-        <div className='w-[100vw] fixed left-[18%] top-[11%] h-[60vh] text-white border-b-white border'>
+      <div className=''>
+        <div className='w-[100vw] fixed left-[18%] top-[%] h-[60vh] text-white border-b-white border'>
           {/*Profile Pane: Avatar, Follow, Following Count, bio, username*/}
           <Bio bio={details.profile.bio} />
           <Avatar avatar={details.profile.avatar.url} />

@@ -10,9 +10,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { detailsAtom } from '@/store/atoms/user'
 import { postAtom } from '@/store/atoms/post'
 import axios from 'axios'
-import communityModal from '@/components/Form/Modals/communityModal'
+import CommunityModal from '@/components/Form/Modals/communityModal'
 import PostModal from '@/components/Form/Modals/postModal'
-import profileModal from '@/components/Form/Modals/profileModal'
+import ProfileModal from '@/components/Form/Modals/profileModal'
 
 function Home() {
   const [details, setDetails] = useRecoilState(detailsAtom)
@@ -26,26 +26,22 @@ function Home() {
       }).then((res) => {
         setDetails(res.data.user)
       })}
+      async function fetchPostData() {await axios.get(getAllPostsEndpoint, {
+        headers: {
+          'Authorization': authHeaders
+        }
+      }).then((res) => {
+        setPosts(res.data.posts)
+      })}
       fetchData()
+      fetchPostData()
+      
       return () => {
       
       }
   }, [])
-
-  useEffect(() => {
-    async function fetchData() {await axios.get(getAllPostsEndpoint, {
-      headers: {
-        'Authorization': authHeaders
-      }
-    }).then((res) => {
-      setPosts(res.data.posts)
-    })}
-    fetchData()
-    return () => {
-    
-    }
-  }, [])
   const exists = details.profile.avatar.exists
+
   return (
     <div className='w-full bg-black h-[100vh] overflow-x-hidden'>
       <Appbar />
@@ -58,8 +54,8 @@ function Home() {
             <Feed/>
             <Popular />
             <PostModal />
-            <profileModal />
-            <communityModal />
+            <ProfileModal />
+            <CommunityModal />
           </div>
         </div>
       </div>

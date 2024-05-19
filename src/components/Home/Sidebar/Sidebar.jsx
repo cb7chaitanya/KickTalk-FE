@@ -7,14 +7,17 @@ import { GoPlus } from "react-icons/go";
 import { Button } from './Button';
 import { MdOutlineDescription } from "react-icons/md";
 import StateButton from "./StateButton";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { profileModalAtom, postModalAtom, communityModalAtom} from '../../../store/atoms/Modal'
+import { detailsAtom } from '../../../store/atoms/user';
 
-export const Sidebar = ({profile}) => {
+export const Sidebar = () => {
     const [profileModal, setProfileModal] = useRecoilState(profileModalAtom)
     const [postModal, setPostModal] = useRecoilState(postModalAtom)
     const [communityModal, setCommunityModal] = useRecoilState(communityModalAtom)
-    const flag = profile===false ? false : true
+    const details = useRecoilValue(detailsAtom)
+    const exists = details.profile.avatar.exists
+    const flag = exists===false ? false : true
     
     return (
         <div className="w-[18vw] h-[100vh] mt-12 bg-zinc-800 border-r-2 py-4 text-white fixed text-xl rounded-br-xl">

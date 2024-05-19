@@ -1,7 +1,6 @@
 import { PostTop } from "./Post/PostTop"
 import { PostMiddle } from "./Post/PostMiddle"
 import { PostBottom } from "./Post/PostBottom"
-import { Link } from "react-router-dom"
 
 export function PostPanel({post}){
     console.log(post)

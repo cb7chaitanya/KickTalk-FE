@@ -59,7 +59,7 @@ export default function PostModal() {
           title : postData.title,
           content : postData.content,
           tags : postData.tags,
-          community : postData.community
+          communityName : postData.community
         }
         const response = await axios.post(createPostEndpoint, body, {
           headers : {

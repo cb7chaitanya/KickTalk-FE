@@ -15,7 +15,7 @@ import PostModal from '@/components/Form/Modals/postModal'
 import ProfileModal from '@/components/Form/Modals/profileModal'
 
 function Home() {
-  const [details, setDetails] = useRecoilState(detailsAtom)
+  const setDetails = useSetRecoilState(detailsAtom)
   const setPosts = useSetRecoilState(postAtom)
   const authHeaders = localStorage.getItem("Authorization")
   useEffect(() => {
@@ -40,14 +40,13 @@ function Home() {
       
       }
   }, [])
-  const exists = details.profile.avatar.exists
 
   return (
     <div className='w-full bg-black h-[100vh] overflow-x-hidden'>
       <Appbar />
       <div className='flex bg-black'>
         <div className='w-[20vw]'>
-          <Sidebar profile={exists}/>
+          <Sidebar/>
         </div>
         <div className='flex w-[80vw] flex-wrap'>
           <div className='flex '>

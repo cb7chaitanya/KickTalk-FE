@@ -77,12 +77,13 @@ export function PostBottom({post}){
             throttledVoteRequest('upvote')
         }
     }
+    const commentCount = post.comments.length
     return (
         <div className="w-[95%] mt-3">
             <div className="inline-flex border w-[100%] h-[5vh] rounded-t-lg">
                 <button className={`mx-2 px-2 border inline-flex ${upvoteClick ? 'text-red-600' : ''}`} onClick={handleUpvote}><BiSolidUpvote className="hover:text-red-600 mt-1 mr-1"/>{`${upvoteCount}`}</button>
                 <button className={`mx-2 px-2 border inline-flex ${downvoteClick ? 'text-red-600' : ''}`} onClick={handleDownvote}><BiSolidDownvote className="hover:text-red-600 mt-1 mr-1"/>{`${downvoteCount}`}</button>
-                <button className="mx-8 px-2 border hover:bg-black duration-400"><FaComments /></button>
+                <button className="mx-8 px-2 border inline-flex hover:bg-black duration-400"><FaComments className="mt-1 mr-1"/>{`${commentCount}`}</button>
             </div>
         </div>
     )

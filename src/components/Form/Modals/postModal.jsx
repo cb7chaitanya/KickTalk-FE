@@ -8,7 +8,7 @@ import { getSubscribedCommunities, createPostEndpoint } from '@/conf/config';
 import { postBody } from '@/zod/postSchema';
 import { Badge } from '@/components/ui/badge';
 import TextArea from './TextArea';
-
+import { userPostAtom } from '@/store/atoms/post';
 
 export default function PostModal() {
   const [postModal, setPostModal] = useRecoilState(postModalAtom)
@@ -26,6 +26,7 @@ export default function PostModal() {
   const title = postData.title
   const content = postData.content
   const community = postData.community
+  const [userPosts, setUserPosts] = useRecoilState(userPostAtom)
 
   const handleAddTag = (e) => {
     if (e.key === "Enter"  && tagInput) {
@@ -66,6 +67,7 @@ export default function PostModal() {
           }
         }).then((res) => {
           console.log(res.data)
+          setUserPosts(...userPosts, res.data)
         })
       } catch(error){
         console.error(error)

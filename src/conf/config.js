@@ -6,6 +6,8 @@ const getSubscribedCommunities = import.meta.env.VITE_SUBSCRIBEDCOMMUNITIES_API
 const createPostEndpoint = import.meta.env.VITE_CREATEPOST_API
 const createCommunityEndpoint = import.meta.env.VITE_CREATECOMMUNITY_API
 const createProfileEndpoint = import.meta.env.VITE_CREATEPROFILE_API
+const getYourPostsEndpoint = import.meta.env.VITE_GETYOURPOSTS_API
+const postVoteHandlingEndpoint = import.meta.env.VITE_POSTVOTEHANDLE_API
 
 export {
     signUpEndpoint,
@@ -15,5 +17,7 @@ export {
     getSubscribedCommunities,
     createPostEndpoint,
     createCommunityEndpoint,
-    createProfileEndpoint
+    createProfileEndpoint,
+    getYourPostsEndpoint,
+    postVoteHandlingEndpoint
 }

@@ -9,7 +9,7 @@ export function PostPanel({post}){
         <div className='w-[60vw] h-[63vh] border bg-zinc-800 rounded-xl flex flex-col items-center'>
             <PostTop post={post}/>
             <PostMiddle post={post}/>
-            <PostBottom />
+            <PostBottom post={post}/>
         </div>
     )
 }

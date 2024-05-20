@@ -6,13 +6,15 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import CommentSection from "@/components/Comments/CommentSection"
 import { Badge } from "@/components/ui/badge"
-import { PostBottom } from "@/components/Home/Middle/Post/PostBottom"
+import { commentAtom } from "@/store/atoms/post"
+import { useRecoilState } from "recoil"
 
 export default function Post() {
     const authHeaders = localStorage.getItem("Authorization")
     const [post, setPost] = useState({})
     const { postId } = useParams()
     const getPostEndpoint = getPostByIdEndpoint.replace(':postId', postId)
+    const [comments, setComments] = useState([])
     useEffect(()=> {
         const getPost = async()=>{
             await axios.get(getPostEndpoint, {
@@ -27,11 +29,11 @@ export default function Post() {
             })
         }
         getPost()
+        setComments(post.comments)
     }, [postId])
     const badges = post.tags
     const title = post.title
     const content = post.content
-    const comments = post.comments
     return( 
     <div className="w-full h-screen text-white">
         <Appbar />
@@ -52,7 +54,7 @@ export default function Post() {
                     <div className="ml-4 mt-2 text-xl">{content}</div>
                 </div>
             </div>
-            <CommentSection comments={comments} className={"mt-12 border border-white transform translate-x-[35%] translate-y-[20%]"}/>
+            <CommentSection comments={comments} setComments={setComments} className={"mt-12 border border-white transform translate-x-[35%] translate-y-[20%]"}/>
         </div>
     </div>
     )

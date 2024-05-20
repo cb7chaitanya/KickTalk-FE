@@ -12,3 +12,8 @@ export const userPostAtom = atom({
     default: [],
     effects_UNSTABLE: [persistAtom]
 })
+
+export const commentAtom = atom({
+    key: "commentAtom",
+    default: []
+})

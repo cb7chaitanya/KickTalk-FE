@@ -14,6 +14,8 @@ const commentEndpoint = import.meta.env.VITE_COMMENT_API
 const commentVoteHandlingEndpoint = import.meta.env.VITE_COMMENTVOTING_API
 const deletePostEndpoint = import.meta.env.VITE_DELETEPOST_API
 const getAllCommunitiesEndpoint = import.meta.env.VITE_GETALLCOMMUNITIES_API 
+const getCommunityEndpoint = import.meta.env.VITE_GETCOMMUNITY_API
+const getCommunityPostsEndpoint = import.meta.env.VITE_GETCOMMUNITYPOSTS_API 
 
 export {
     signUpEndpoint,
@@ -31,5 +33,7 @@ export {
     commentEndpoint,
     commentVoteHandlingEndpoint,
     deletePostEndpoint,
-    getAllCommunitiesEndpoint
+    getAllCommunitiesEndpoint,
+    getCommunityEndpoint,
+    getCommunityPostsEndpoint
 }

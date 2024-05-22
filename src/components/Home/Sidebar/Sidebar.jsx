@@ -16,7 +16,7 @@ export const Sidebar = () => {
     const [postModal, setPostModal] = useRecoilState(postModalAtom)
     const [communityModal, setCommunityModal] = useRecoilState(communityModalAtom)
     const details = useRecoilValue(detailsAtom)
-    const exists = details.profile.avatar.exists
+    const exists = details?.profile?.avatar.exists
     const flag = exists===false ? false : true
     
     return (

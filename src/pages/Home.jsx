@@ -3,7 +3,7 @@ import { Sidebar } from '@/components/Home/Sidebar/Sidebar'
 import { Feed }  from '@/components/Home/Middle/Feed'
 import { Carousel } from '@/components/Home/Carousel/Carousel'
 import { Popular } from '@/components/Home/Right/Popular'
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from "react"
 import { getUserDetailsEndpoint, getAllPostsEndpoint } from '@/conf/config'
 import { useRecoilState, useSetRecoilState } from 'recoil'
@@ -15,8 +15,9 @@ import PostModal from '@/components/Form/Modals/postModal'
 import ProfileModal from '@/components/Form/Modals/profileModal'
 
 function Home() {
-  const setDetails = useSetRecoilState(detailsAtom)
+  const [details, setDetails] = useRecoilState(detailsAtom)
   const setPosts = useSetRecoilState(postAtom)
+  const [loading, setLoading] = useState(true)
   const authHeaders = localStorage.getItem("Authorization")
   useEffect(() => {
       async function fetchData() {await axios.get(getUserDetailsEndpoint, {

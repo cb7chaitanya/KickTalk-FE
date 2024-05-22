@@ -43,7 +43,6 @@ const Profile =  () =>  {
       <Sidebar />
       <div className='bg-black'>
         <div className='w-[100vw] transform translate-x-[18%] h-[50vh] text-white border-b-white border mb-8'>
-          {/*Profile Pane: Avatar, Follow, Following Count, bio, username*/}
           <Bio bio={details.profile.bio} />
           <Username username={details.username}/>
           <Avatar avatar={details.profile.avatar.url} />

@@ -6,15 +6,12 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import CommentSection from "@/components/Comments/CommentSection"
 import { Badge } from "@/components/ui/badge"
-import { commentAtom } from "@/store/atoms/post"
-import { useRecoilState } from "recoil"
 
 export default function Post() {
     const authHeaders = localStorage.getItem("Authorization")
     const [post, setPost] = useState({})
     const { postId } = useParams()
     const getPostEndpoint = getPostByIdEndpoint.replace(':postId', postId)
-    const [comments, setComments] = useState([])
     useEffect(()=> {
         const getPost = async()=>{
             await axios.get(getPostEndpoint, {
@@ -29,13 +26,12 @@ export default function Post() {
             })
         }
         getPost()
-        setComments(post.comments)
     }, [postId])
     const badges = post.tags
     const title = post.title
     const content = post.content
     return( 
-    <div className="w-full h-screen text-white">
+    <div className="w-full h-[100vh] text-white bg-black">
         <Appbar />
         <Sidebar />
         <div className="bg-black min-h-[140vh]">
@@ -43,8 +39,8 @@ export default function Post() {
                 <div className="inline-flex my-3 w-[95%]">
                     <div className="ml-3">
                     <div className="text-2xl font-bold">{title}</div>
-                    {badges.map((badge) => (
-                    <Badge variant="default" className="bg-white text-black hover:bg-white mx-1">
+                    {badges && badges.map((badge, index) => (
+                    <Badge variant="default" className="bg-white text-black hover:bg-white mx-1" key={index}>
                         {badge}
                     </Badge>
                     ))}    
@@ -54,7 +50,7 @@ export default function Post() {
                     <div className="ml-4 mt-2 text-xl">{content}</div>
                 </div>
             </div>
-            <CommentSection comments={comments} setComments={setComments} className={"mt-12 border border-white transform translate-x-[35%] translate-y-[20%]"}/>
+            <CommentSection className={"border border-white absolute top-[80%] left-[25%]"}/>
         </div>
     </div>
     )

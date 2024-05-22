@@ -19,7 +19,7 @@ export function PostBottom({post}){
     const postVoteHandleEndpoint = postVoteHandlingEndpoint.replace(':postId', postId)
     const sendVoteRequest = useCallback(async (vote) => {
         try {
-            const response = await axios.post(postVoteHandleEndpoint, {action: vote, postId: post._id}, 
+            const response = await axios.post(postVoteHandleEndpoint, {action: vote}, 
                 {headers: 
                     {
                         'Authorization': authHeaders

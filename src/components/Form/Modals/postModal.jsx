@@ -98,11 +98,11 @@ export default function PostModal() {
   return ( 
     postModal === true ? (
       <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 text-white">
-      <div className="bg-zinc-900 rounded-lg p-4 h-96 w-1/2 ">
-        <button className='absolute top-24 right-80 mr-2' onClick={() => setPostModal(false)}><MdCancelPresentation />
-</button>
+      <div className="bg-zinc-900 rounded-lg p-4 h-96 w-1/2 relative">
         Create a post
         <form>
+        <button className='absolute top-2 right-2 mr-2' onClick={() => setPostModal(false)}><MdCancelPresentation />
+        </button>
         <select
               className="bg-zinc-900 shadow-zinc-950 shadow-md text-white p-2 fixed right-80 mr-24"
               value={selectedCommunity}
@@ -129,7 +129,7 @@ export default function PostModal() {
             </Badge>
             ))}
           </div>
-          <TextArea label="Content" value={content} onChange={(e) => setPostData({...postData, content: e.target.value})} placeholder={"Content"} onKeyDown={emptyFunction} className={"fixed right-80 top-56 mr-4"}/>
+          <TextArea label="Content" value={content} onChange={(e) => setPostData({...postData, content: e.target.value})} placeholder={"Content"} onKeyDown={emptyFunction} className={"absolute right-8 top-40"}/>
         </form>
         <button onClick={createPost} className='mt-20 ml-2 bg-zinc-950 py-1 px-4 rounded-xl text-white hover:bg-zinc-800 duration-300 border border-bg-white'>Post</button>
       </div>

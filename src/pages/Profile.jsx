@@ -26,7 +26,7 @@ const Profile =  () =>  {
         }
       }).then((res) => {
         console.log(res.data.posts)
-        setUserPosts(res.data.posts)
+        setUserPosts(res.data.posts.reverse())
         console.log(userPosts)
       })
       } catch(error) {

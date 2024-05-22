@@ -31,7 +31,7 @@ function Home() {
           'Authorization': authHeaders
         }
       }).then((res) => {
-        setPosts(res.data.posts)
+        setPosts(res.data.posts.reverse())
       })}
       fetchData()
       fetchPostData()

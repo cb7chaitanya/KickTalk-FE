@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Community from './pages/Community'
 import Post from './pages/Post'
+import Communities from './pages/Communities'
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path='/home' element={<Home/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/:communityId' element={<Community />} />
-          <Route path='/:communityId/:postId' element={<Post />} />
+          <Route path='/post/:postId' element={<Post />} />
+          <Route path='/community' element={<Communities />} />
         </Routes>
       </BrowserRouter>
       </RecoilRoot>

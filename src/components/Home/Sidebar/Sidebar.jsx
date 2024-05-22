@@ -23,7 +23,6 @@ export const Sidebar = () => {
         <div className="w-[18vw] h-[100vh] mt-12 bg-zinc-800 border-r-2 py-4 text-white fixed text-xl rounded-br-xl">
             <ul className="mt-4 flex flex-col justify-start items-start">
                 <Button navigation="home" className="" label={<IoHomeOutline className='inline-flex mr-2'/>} title="Home" />
-                <Button navigation="about" className="" label={<MdOutlineDescription className='inline-flex mr-2'/>} title="About" />
                 <Button navigation="community" className="" label={<RiCommunityLine className='inline-flex mr-2'/>} title="Communities" />
                 {flag===false ? <StateButton title={"Create Profile"} isOpen={profileModal} setIsOpen={setProfileModal} label={<CiUser className='inline-flex mr-2' />}/> : <Button navigation="profile" className="" label={<CiUser className='inline-flex mr-2'/>} title="Profile" />}
                 <StateButton title={"Create Post"} label={<GoPlus className='inline-flex mr-2'/>} isOpen={postModal} setIsOpen={setPostModal}/>

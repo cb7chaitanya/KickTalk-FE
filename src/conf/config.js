@@ -16,6 +16,11 @@ const deletePostEndpoint = import.meta.env.VITE_DELETEPOST_API
 const getAllCommunitiesEndpoint = import.meta.env.VITE_GETALLCOMMUNITIES_API 
 const getCommunityEndpoint = import.meta.env.VITE_GETCOMMUNITY_API
 const getCommunityPostsEndpoint = import.meta.env.VITE_GETCOMMUNITYPOSTS_API 
+const subscribeCommunityEndpoint = import.meta.env.VITE_COMMUNITYSUBSCRIBE_API
+const unsubscribeCommunityEndpoint = import.meta.env.VITE_COMMUNITYUNSUBSCRIBE_API
+const unfollowEndpoint = import.meta.env.VITE_UNFOLLOW_API
+const followEndpoint = import.meta.env.VITE_FOLLOW_API
+const userSearchEndpoint = import.meta.env.VITE_USERSEARCH_API
 
 export {
     signUpEndpoint,
@@ -35,5 +40,10 @@ export {
     deletePostEndpoint,
     getAllCommunitiesEndpoint,
     getCommunityEndpoint,
-    getCommunityPostsEndpoint
+    getCommunityPostsEndpoint,
+    subscribeCommunityEndpoint,
+    unsubscribeCommunityEndpoint,
+    unfollowEndpoint,
+    followEndpoint,
+    userSearchEndpoint
 }

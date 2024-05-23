@@ -11,18 +11,21 @@ export function Popular(){
     const authHeaders = localStorage.getItem("Authorization")
     useEffect(() => {
         const getCommunities = async () => {
-            await axios.get(getAllCommunitiesEndpoint, {
+            try{
+                await axios.get(getAllCommunitiesEndpoint, {
                 headers: {
                     'Authorization': authHeaders
                 }
             }).then((res) => {
                 setCommunities(res.data.communities)
                 console.log(communities)
-            })
+            })} catch(error){
+                console.error(error)
+            }
         }
         getCommunities()
     }, [])
-    
+
     return (
         <div className="h-[65vh] fixed right-6 w-[18vw] pt-8 bg-zinc-800 border-xl rounded-xl mt-20">
             <div className="text-xl inline-flex text-white mb-2"><HiFire className='text-xl mr-1' />Popular Communities</div>

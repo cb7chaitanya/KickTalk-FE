@@ -10,9 +10,11 @@ import { signupBody } from '@/zod/authSchemas'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { signUpEndpoint } from '@/conf/config'
+import { useSetRecoilState } from 'recoil'
+import authAtom from '@/store/atoms/Auth'
 
 function Signup({toggleForm}) { 
-  
+  const setAuthenticated = useSetRecoilState(authAtom)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationResult = signupBody.safeParse({ email, username, password });
@@ -24,6 +26,7 @@ function Signup({toggleForm}) {
           password
         });
         localStorage.setItem("Authorization", "Bearer " + response.data.token);
+        setAuthenticated(true)
         navigate("/home");
       } catch (error) {
         console.error("API call failed:", error);

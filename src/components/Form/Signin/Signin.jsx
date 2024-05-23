@@ -11,9 +11,11 @@ import { signInEndpoint } from '@/conf/config'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
+import authAtom from '@/store/atoms/Auth'
 
 function Signin({toggleForm}) {
   const navigate = useNavigate()
+  const setAuthenticated = useSetRecoilState(authAtom)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationResult = signinBody.safeParse({ email, password });
@@ -25,13 +27,12 @@ function Signin({toggleForm}) {
         });
         localStorage.setItem("Authorization", "Bearer " + response.data.token);
         navigate("/home");
-
+        setAuthenticated(true) 
         axios.interceptors.request.use(
           config => {
               const token = localStorage.getItem('Authorization');
               if (token) {
                 config.headers.Authorization = token;
-                useSetRecoilState()
               }
               return config;
           },

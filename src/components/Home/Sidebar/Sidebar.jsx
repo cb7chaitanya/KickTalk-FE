@@ -7,9 +7,10 @@ import { GoPlus } from "react-icons/go";
 import { Button } from './Button';
 import { MdOutlineDescription } from "react-icons/md";
 import StateButton from "./StateButton";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { profileModalAtom, postModalAtom, communityModalAtom} from '../../../store/atoms/Modal'
 import { detailsAtom } from '../../../store/atoms/user';
+import authAtom from "@/store/atoms/Auth";
 
 export const Sidebar = () => {
     const [profileModal, setProfileModal] = useRecoilState(profileModalAtom)
@@ -18,6 +19,11 @@ export const Sidebar = () => {
     const details = useRecoilValue(detailsAtom)
     const exists = details?.profile?.avatar.exists
     const flag = exists===false ? false : true
+    const setAuthenticated = useSetRecoilState(authAtom)
+    const logout = () =>{
+        window.localStorage.clear()
+        setAuthenticated(false)
+    }
     const emptyFunction = () => {
 
     }
@@ -29,7 +35,7 @@ export const Sidebar = () => {
                 {flag===false ? <StateButton title={"Create Profile"} isOpen={profileModal} setIsOpen={setProfileModal} label={<CiUser className='inline-flex mr-2 text-blue-600' />}/> : <Button navigation="profile" onClick={emptyFunction} className="" label={<CiUser className='inline-flex mr-2 text-blue-600'/>} title="Profile" />}
                 <StateButton title={"Create Post"} label={<GoPlus className='inline-flex mr-2 text-blue-600'/>} isOpen={postModal} setIsOpen={setPostModal}/>
                 <StateButton title={"Create Community"} label={<IoCreateOutline className='inline-flex mr-2 text-blue-600'/>} isOpen={communityModal} setIsOpen={setCommunityModal}/>
-                <Button navigation="" onClick={() => localStorage.clear()} className="mt-6" label={<VscSignOut className='inline-flex mr-2 text-blue-600'/>} title="SignOut" />
+                <Button navigation="" onClick={logout} className="mt-6" label={<VscSignOut className='inline-flex mr-2 text-blue-600'/>} title="SignOut" />
             </ul>
         </div>
     );

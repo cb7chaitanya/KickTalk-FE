@@ -18,7 +18,7 @@ const Profile =  () =>  {
   const authHeaders = localStorage.getItem("Authorization")
   const [userPosts, setUserPosts] = useRecoilState(userPostAtom)
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async() => {
       try{
       await axios.get(getYourPostsEndpoint, {
         headers: {

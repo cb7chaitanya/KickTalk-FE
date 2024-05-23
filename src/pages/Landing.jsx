@@ -1,12 +1,21 @@
 import Signup from '@/components/Form/Signup/Signup'
 import Signin from '@/components/Form/Signin/Signin'
 import { BackgroundBeams } from '@/components/ui/background-beams'
-import React from 'react'
-import { useRecoilState } from 'recoil'
-import { userAtom } from '@/store/atoms/Auth'
+import React, { useEffect } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import authAtom, { userAtom } from '@/store/atoms/Auth'
+import { useNavigate } from 'react-router-dom'
+
 
 function Landing() {
   const [isUser, setUser] = useRecoilState(userAtom)
+  const authenticated = useRecoilValue(authAtom)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (authenticated) {
+      navigate('/home')
+    }
+  })
   function toggleForm(){
     setUser(!isUser)
   }
